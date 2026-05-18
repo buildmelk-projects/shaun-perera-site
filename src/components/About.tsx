@@ -32,7 +32,7 @@ export default function About() {
                 "For me, music is a communication tool and it is how I communicate."
               </p>
               <p className="text-xs text-text-muted mt-2 font-sans tracking-widest uppercase">
-                — Shaun Perera, The Morning
+                - Shaun Perera, The Morning
               </p>
             </div>
           </div>

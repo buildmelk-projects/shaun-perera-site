@@ -5,9 +5,9 @@ export const artist = {
   shortBio:
     'Colombo-born singer-songwriter. Voice of Magic Box Mixup. Going solo since 2021 with bilingual originals that blur the line between indie-pop and raw human feeling.',
   longBio: [
-    `Shaun Perera-de Mel grew up surrounded by music — his father was the first lead singer of The Gypsies, one of Sri Lanka's most celebrated bands. That lineage wasn't a blueprint; it was a foundation. Shaun took his own winding path, studying forensic science in England and biotechnology in Malaysia, before music pulled him back irresistibly.`,
+    `Shaun Perera-de Mel grew up surrounded by music his father was the first lead singer of The Gypsies, one of Sri Lanka's most celebrated bands. That lineage wasn't a blueprint; it was a foundation. Shaun took his own winding path, studying forensic science in England and biotechnology in Malaysia, before music pulled him back irresistibly.`,
     `In 2005 he co-founded Magic Box Mixup, a seven-piece alternative-pop ensemble that would go on to win the People's Choice Award and Best Musician honours at TNL Onstage in 2006, and send their original "Here I Go" to the top of YES FM's Home Grown Charts for three weeks straight.`,
-    `His solo career began in August 2021 with "Obamai" — a Sinhala-language meditation on love in its broadest sense, written in a language that holds a different kind of weight for him. It arrived as both a debut and a declaration: that music, for Shaun, is less about performance and more about connection. About making whoever is listening feel a little less alone.`,
+    `His solo career began in August 2021 with "Obamai" a Sinhala-language meditation on love in its broadest sense, written in a language that holds a different kind of weight for him. It arrived as both a debut and a declaration: that music, for Shaun, is less about performance and more about connection. About making whoever is listening feel a little less alone.`,
     `He teaches sports at Elizabeth Moir School and engineers sound at Mixalot Studio. He writes in English and in Sinhala. He plays in a band and sings by himself. All of it, somehow, is the same conversation.`,
   ],
 }
@@ -37,7 +37,7 @@ export const discography: Track[] = [
     language: 'Sinhala',
     year: 2021,
     genre: 'Sinhala Soul',
-    description: 'Debut solo single. A meditation on love beyond romance — universal, quiet, true.',
+    description: 'Debut solo single. A meditation on love beyond romance, universal, quiet, true.',
     links: {
       youtube: 'https://www.youtube.com/watch?v=NKO6ox4BbTY',
       appleMusic: 'https://music.apple.com/lk/song/obamai/1579630793',
@@ -152,7 +152,7 @@ export const pressQuotes: PressQuote[] = [
   },
   {
     publication: 'Decibel.lk',
-    quote: 'Simple, soothing and exactly what Sri Lanka and Lankans all over the world need today — a big ol hug!',
+    quote: 'Simple, soothing and exactly what Sri Lanka and Lankans all over the world need today. A big ol hug!',
     url: 'https://decibel.lk/new-music-obamai-i-%E0%B6%94%E0%B6%B6%E0%B6%B8%E0%B6%BA%E0%B7%92-i-shaun-perera-official-music-video/',
     year: 2021,
     image: '/images/shaun-expressive.jpg',
@@ -171,7 +171,7 @@ export const pressQuotes: PressQuote[] = [
   },
   {
     publication: 'The Sunday Times',
-    quote: 'Magical music from Magic Box Mixup — a band that has earned every note of their reputation.',
+    quote: 'Magical music from Magic Box Mixup. A band that has earned every note of their reputation.',
     url: 'https://www.sundaytimes.lk/141019/magazine/magical-music-from-magic-box-mixup-122458.html',
     year: 2014,
     image: '/images/shaun-about.jpg',
@@ -192,12 +192,12 @@ export type Video = {
 
 export const videos: Video[] = [
   {
-    title: 'Obamai (ඔබමයි) — Official Music Video',
+    title: 'Obamai (ඔබමයි) Official Music Video',
     description: 'Debut solo single. August 2021.',
     youtubeId: 'NKO6ox4BbTY',
   },
   {
-    title: 'Talk Is Cheap — Romaine Willis ft. Shaun Perera',
+    title: 'Talk Is Cheap (Romaine Willis ft. Shaun Perera)',
     description: 'Good Groove Society collaboration. September 2020.',
     youtubeId: 'nd7E9q0dK-g',
   },

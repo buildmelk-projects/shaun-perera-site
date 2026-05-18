@@ -17,12 +17,12 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.shaunperera.com'),
-  title: 'Shaun Perera — Music',
+  title: 'Shaun Perera',
   description:
     'Official website of Shaun Perera, indie singer-songwriter from Colombo, Sri Lanka. Bilingual originals in English and Sinhala. Voice of Magic Box Mixup.',
   keywords: ['Shaun Perera', 'Sri Lanka music', 'indie singer', 'Obamai', 'Magic Box Mixup', 'Sinhala music'],
   openGraph: {
-    title: 'Shaun Perera — Music',
+    title: 'Shaun Perera',
     description: 'Official website of Shaun Perera, indie singer-songwriter from Colombo, Sri Lanka.',
     url: 'https://www.shaunperera.com',
     siteName: 'Shaun Perera',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Shaun Perera — Music',
+    title: 'Shaun Perera',
     description: 'Official website of Shaun Perera, indie singer-songwriter from Colombo, Sri Lanka.',
     images: ['/images/shaun-expressive.jpg'],
   },

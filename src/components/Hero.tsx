@@ -9,7 +9,7 @@ export default function Hero() {
   useEffect(() => { setMounted(true) }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-screen flex items-end overflow-hidden">
       {/* Background photo */}
       <div className="absolute inset-0 bg-background">
         <Image
@@ -17,7 +17,7 @@ export default function Hero() {
           alt="Shaun Perera"
           fill
           priority
-          className="object-cover object-center opacity-40"
+          className="object-cover object-center opacity-60"
           sizes="100vw"
         />
       </div>
@@ -27,7 +27,7 @@ export default function Hero() {
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(to right, rgba(12,12,12,0.95) 40%, rgba(12,12,12,0.3) 100%), linear-gradient(to top, rgba(12,12,12,1) 0%, rgba(12,12,12,0.4) 50%, rgba(12,12,12,0.2) 100%)',
+            'linear-gradient(to right, rgba(12,12,12,0.92) 35%, rgba(12,12,12,0.15) 100%), linear-gradient(to top, rgba(12,12,12,0.95) 0%, rgba(12,12,12,0.3) 45%, rgba(12,12,12,0.05) 100%)',
         }}
       />
 
@@ -65,7 +65,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20 pb-24 lg:pt-24 lg:pb-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full" style={{ paddingBottom: 'clamp(3rem, 10vh, 7rem)' }}>
         {/* Eyebrow */}
         <div
           className={`flex items-center gap-3 mb-6 transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}

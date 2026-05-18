@@ -75,7 +75,7 @@ function AlbumCard({ track, index }: { track: Track; index: number }) {
           href={primaryLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+          className="absolute inset-0 flex items-center justify-center opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 z-10"
           aria-label={`Play ${track.title}`}
         >
           <motion.div
@@ -120,15 +120,15 @@ function AlbumCard({ track, index }: { track: Track; index: number }) {
           </p>
         </div>
 
-        {/* Streaming links — fade in on hover */}
-        <div className="flex-shrink-0 flex flex-col gap-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-250">
+        {/* Streaming links — always visible on mobile, fade in on desktop hover */}
+        <div className="flex-shrink-0 flex flex-col gap-2.5 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-250">
           {track.links.youtube && (
             <a
               href={track.links.youtube}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="text-white/35 hover:text-accent transition-colors duration-150"
+              className="p-1.5 -m-1.5 text-white/35 hover:text-accent transition-colors duration-150"
               aria-label={`Watch ${track.title} on YouTube`}
             >
               <Play size={12} />
@@ -140,7 +140,7 @@ function AlbumCard({ track, index }: { track: Track; index: number }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="text-white/35 hover:text-accent transition-colors duration-150"
+              className="p-1.5 -m-1.5 text-white/35 hover:text-accent transition-colors duration-150"
               aria-label={`Listen to ${track.title} on Apple Music`}
             >
               <Music2 size={12} />

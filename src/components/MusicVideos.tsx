@@ -1,35 +1,25 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { discography, comingSoon, videos, socials, type Track, type Video } from '@/lib/content'
 import { Play, ExternalLink, Music2, Sparkles } from 'lucide-react'
 
 const ease = [0.22, 1, 0.36, 1] as const
 const INITIAL_TRACK_COUNT = 4
 
-const gridVariants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.07 } },
-}
-
-const cardVariants = {
-  hidden: { opacity: 0, scale: 0.95 },
-  show: { opacity: 1, scale: 1, transition: { duration: 0.5, ease } },
-}
-
-const videoGridVariants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.09 } },
-}
-
-const videoCellVariants = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease } },
-}
-
 function AlbumCard({ track, index }: { track: Track; index: number }) {
+  const shouldReduceMotion = useReducedMotion()
   const primaryLink = track.links.youtube || track.links.appleMusic
+
+  const cardVariants = {
+    hidden: { opacity: 0, scale: shouldReduceMotion ? 1 : 0.95 },
+    show: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: shouldReduceMotion ? 0 : 0.5, ease },
+    },
+  }
 
   return (
     <motion.div variants={cardVariants} className="group relative aspect-[3/4] overflow-hidden">
@@ -40,12 +30,12 @@ function AlbumCard({ track, index }: { track: Track; index: number }) {
           src={track.image}
           alt=""
           aria-hidden
-          className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
           style={{ opacity: 0.55 }}
         />
       )}
 
-      {/* Colour wash — lighter when photo present so the image reads through */}
+      {/* Colour wash */}
       <div
         className="absolute inset-0"
         style={{
@@ -55,7 +45,7 @@ function AlbumCard({ track, index }: { track: Track; index: number }) {
         }}
       />
       {/* Subtle dark vignette */}
-      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500" />
+      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300" />
 
       {/* Top row: track number + genre tag */}
       <div className="absolute top-0 left-0 right-0 flex items-start justify-between p-4">
@@ -70,7 +60,7 @@ function AlbumCard({ track, index }: { track: Track; index: number }) {
               letterSpacing: '0.12em',
               padding: '3px 8px',
               background: 'rgba(12,12,12,0.6)',
-              color: 'rgba(240,236,228,0.45)',
+              color: 'rgba(240,236,228,0.65)',
               backdropFilter: 'blur(6px)',
             }}
           >
@@ -89,7 +79,7 @@ function AlbumCard({ track, index }: { track: Track; index: number }) {
           aria-label={`Play ${track.title}`}
         >
           <motion.div
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: shouldReduceMotion ? 1 : 1.1 }}
             transition={{ duration: 0.2, ease }}
             className="flex items-center justify-center w-14 h-14 rounded-full"
             style={{
@@ -125,7 +115,7 @@ function AlbumCard({ track, index }: { track: Track; index: number }) {
               {track.titleSinhala}
             </p>
           )}
-          <p className="text-text-muted/40 font-sans mt-1.5" style={{ fontSize: '10px', letterSpacing: '0.05em' }}>
+          <p className="text-text-muted/60 font-sans mt-1.5" style={{ fontSize: '10px', letterSpacing: '0.05em' }}>
             {track.type}&nbsp;&nbsp;·&nbsp;&nbsp;{track.year}
           </p>
         </div>
@@ -163,46 +153,57 @@ function AlbumCard({ track, index }: { track: Track; index: number }) {
 }
 
 function VideoEmbed({ video }: { video: Video }) {
+  const shouldReduceMotion = useReducedMotion()
   const [playing, setPlaying] = useState(false)
+  const [iframeLoaded, setIframeLoaded] = useState(false)
   const [thumbSrc, setThumbSrc] = useState(
     `https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`
   )
 
+  const cellVariants = {
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 16 },
+    show: { opacity: 1, y: 0, transition: { duration: shouldReduceMotion ? 0 : 0.5, ease } },
+  }
+
   return (
-    <motion.div variants={videoCellVariants} className="group bg-surface border border-border overflow-hidden flex flex-col">
+    <motion.div variants={cellVariants} className="group bg-surface border border-border overflow-hidden flex flex-col">
       <div className="relative aspect-video bg-background overflow-hidden flex-shrink-0">
-        {playing ? (
+        {playing && (
           <iframe
             src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
             title={video.title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            className="absolute inset-0 w-full h-full border-0"
+            onLoad={() => setIframeLoaded(true)}
+            className="absolute inset-0 w-full h-full border-0 transition-opacity duration-300"
+            style={{ opacity: iframeLoaded ? 1 : 0 }}
           />
-        ) : (
-          <button
-            className="absolute inset-0 w-full h-full flex items-center justify-center"
-            onClick={() => setPlaying(true)}
-            aria-label={`Play ${video.title}`}
-          >
-            <img
-              src={thumbSrc}
-              alt={video.title}
-              className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-500"
-              loading="lazy"
-              onError={() =>
-                setThumbSrc(`https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`)
-              }
-            />
-            <div className="absolute inset-0 bg-background/30" />
-            <div
-              className="relative z-10 flex items-center justify-center w-16 h-16 rounded-full border border-accent/60 transition-all duration-300 group-hover:scale-105 group-hover:border-accent"
-              style={{ background: 'rgba(200,169,110,0.15)' }}
-            >
-              <Play size={22} className="text-accent ml-1" fill="currentColor" />
-            </div>
-          </button>
         )}
+        {/* Thumbnail — stays visible until iframe has loaded */}
+        <button
+          className={`absolute inset-0 w-full h-full flex items-center justify-center transition-opacity duration-300 ${
+            playing && iframeLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
+          }`}
+          onClick={() => setPlaying(true)}
+          aria-label={`Play ${video.title}`}
+        >
+          <img
+            src={thumbSrc}
+            alt={video.title}
+            className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-300"
+            loading="lazy"
+            onError={() =>
+              setThumbSrc(`https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`)
+            }
+          />
+          <div className="absolute inset-0 bg-background/30" />
+          <div
+            className="relative z-10 flex items-center justify-center w-16 h-16 rounded-full border border-accent/60 transition-all duration-300 group-hover:scale-105 group-hover:border-accent"
+            style={{ background: 'rgba(200,169,110,0.15)' }}
+          >
+            <Play size={22} className="text-accent ml-1" fill="currentColor" />
+          </div>
+        </button>
       </div>
       <div className="p-5 flex-1">
         <h3 className="font-display text-base text-text-primary leading-snug mb-1" style={{ fontWeight: 500 }}>
@@ -215,11 +216,22 @@ function VideoEmbed({ video }: { video: Video }) {
 }
 
 export default function MusicVideos() {
+  const shouldReduceMotion = useReducedMotion()
   const [activeTab, setActiveTab] = useState<'tracks' | 'videos'>('videos')
   const [showAll, setShowAll] = useState(false)
 
   const displayedTracks = showAll ? discography : discography.slice(0, INITIAL_TRACK_COUNT)
   const hasMore = discography.length > INITIAL_TRACK_COUNT && !showAll
+
+  const gridVariants = {
+    hidden: {},
+    show: { transition: shouldReduceMotion ? {} : { staggerChildren: 0.07 } },
+  }
+
+  const videoGridVariants = {
+    hidden: {},
+    show: { transition: shouldReduceMotion ? {} : { staggerChildren: 0.09 } },
+  }
 
   return (
     <section id="music" className="py-24 lg:py-32 border-t border-border">
@@ -250,7 +262,7 @@ export default function MusicVideos() {
                 <motion.div
                   layoutId="tab-underline"
                   className="absolute bottom-0 left-0 right-0 h-px bg-accent"
-                  transition={{ duration: 0.25, ease }}
+                  transition={{ duration: shouldReduceMotion ? 0 : 0.25, ease }}
                 />
               )}
             </button>
@@ -265,7 +277,7 @@ export default function MusicVideos() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.15 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.15 }}
             >
               {/* Album grid */}
               <motion.div
@@ -330,7 +342,7 @@ export default function MusicVideos() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.15 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.15 }}
             >
               <motion.div
                 variants={videoGridVariants}

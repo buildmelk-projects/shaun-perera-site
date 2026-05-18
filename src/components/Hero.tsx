@@ -55,7 +55,7 @@ export default function Hero() {
           fontFamily: 'var(--font-playfair)',
           fontStyle: 'italic',
           color: 'transparent',
-          WebkitTextStroke: '1px rgba(200,169,110,0.06)',
+          WebkitTextStroke: '1px rgba(200,169,110,0.10)',
           letterSpacing: '-0.04em',
           whiteSpace: 'nowrap',
           transform: 'translateX(8%) translateY(-50%)',

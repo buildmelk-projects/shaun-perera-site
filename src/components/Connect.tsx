@@ -88,7 +88,7 @@ export default function Connect() {
                   href={socials.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-sm tracking-wider uppercase font-medium font-sans transition-colors duration-200 self-start bg-accent hover:bg-accent-hover"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 text-sm tracking-wider uppercase font-medium font-sans transition-colors duration-200 self-start bg-accent hover:bg-accent-hover"
                   style={{ color: '#0c0c0c', letterSpacing: '0.1em' }}
                 >
                   <MessageCircle size={14} />

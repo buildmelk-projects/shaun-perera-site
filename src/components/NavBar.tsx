@@ -44,7 +44,7 @@ export default function NavBar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm tracking-wider uppercase text-text-muted hover:text-accent transition-colors duration-200"
+                className="relative text-sm tracking-wider uppercase text-text-muted hover:text-accent transition-colors duration-200 after:absolute after:bottom-[-2px] after:left-0 after:h-px after:w-0 after:bg-accent after:transition-all after:duration-250 hover:after:w-full"
               >
                 {link.label}
               </a>

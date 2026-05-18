@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { pressQuotes, type PressQuote } from '@/lib/content'
 import { ExternalLink } from 'lucide-react'
 
@@ -27,7 +27,7 @@ function FeaturedCard({ quote }: { quote: PressQuote }) {
             <span className="text-xs font-sans tracking-[0.3em] uppercase text-accent">Featured</span>
             <div className="h-px flex-1 bg-border" />
             {quote.year && (
-              <span className="text-xs text-text-muted/40 font-sans tabular-nums">{quote.year}</span>
+              <span className="text-xs text-text-muted/60 font-sans tabular-nums">{quote.year}</span>
             )}
           </div>
 
@@ -121,7 +121,7 @@ function PressCard({ quote }: { quote: PressQuote }) {
           </span>
           <div className="flex items-center gap-2">
             {quote.year && (
-              <span className="text-xs text-text-muted/40 font-sans tabular-nums">{quote.year}</span>
+              <span className="text-xs text-text-muted/60 font-sans tabular-nums">{quote.year}</span>
             )}
             <ExternalLink
               size={12}
@@ -151,6 +151,7 @@ function PressCard({ quote }: { quote: PressQuote }) {
 
 export default function Press() {
   const [showAll, setShowAll] = useState(false)
+  const shouldReduceMotion = useReducedMotion()
 
   const featured = pressQuotes[0]
   const gridItems = pressQuotes.slice(1)
@@ -181,10 +182,10 @@ export default function Press() {
               <motion.div
                 key={`${q.publication}-${i}`}
                 className="bg-background"
-                initial={{ opacity: 0, y: 14 }}
+                initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 14 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.38, ease, delay: i * 0.07 }}
+                exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -8 }}
+                transition={{ duration: shouldReduceMotion ? 0 : 0.38, ease, delay: shouldReduceMotion ? 0 : i * 0.07 }}
                 layout
               >
                 <PressCard quote={q} />

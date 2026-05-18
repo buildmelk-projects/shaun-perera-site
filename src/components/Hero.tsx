@@ -9,7 +9,7 @@ export default function Hero() {
   useEffect(() => { setMounted(true) }, [])
 
   return (
-    <section className="relative min-h-screen flex items-end pb-24 lg:pb-32 overflow-hidden">
+    <section className="relative min-h-[75vh] md:min-h-screen flex items-end pb-16 md:pb-24 lg:pb-32 overflow-hidden">
       {/* Background photo */}
       <div className="absolute inset-0 bg-background">
         <Image

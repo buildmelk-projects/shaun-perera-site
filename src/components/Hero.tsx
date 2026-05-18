@@ -9,7 +9,7 @@ export default function Hero() {
   useEffect(() => { setMounted(true) }, [])
 
   return (
-    <section className="relative min-h-[75vh] md:min-h-screen flex items-end pb-16 md:pb-24 lg:pb-32 overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background photo */}
       <div className="absolute inset-0 bg-background">
         <Image
@@ -65,7 +65,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20 pb-24 lg:pt-24 lg:pb-32">
         {/* Eyebrow */}
         <div
           className={`flex items-center gap-3 mb-6 transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}

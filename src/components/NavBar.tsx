@@ -35,7 +35,7 @@ export default function NavBar() {
           className="font-display text-lg font-semibold tracking-widest text-text-primary uppercase"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          Shaun Perera
+          Shaun.
         </a>
 
         {/* Desktop links */}

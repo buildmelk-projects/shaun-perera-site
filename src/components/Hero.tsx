@@ -14,7 +14,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-background">
         <Image
           src="/images/shaun-portrait.jpg"
-          alt="Shaun Perera"
+          alt="Shaun."
           fill
           priority
           className="object-cover object-center opacity-60"
@@ -90,7 +90,10 @@ export default function Hero() {
           Shaun
           <br />
           <span className="italic font-normal" style={{ color: 'var(--accent)' }}>
-            Perera
+            Perera{' '}
+          </span>
+          <span className="italic font-normal text-white">
+            De Mel
           </span>
         </h1>
 

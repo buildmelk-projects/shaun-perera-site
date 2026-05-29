@@ -93,7 +93,7 @@ export default function Hero() {
             Perera{' '}
           </span>
           <span className="italic font-normal text-white">
-            De Mel
+            de Mel
           </span>
         </h1>
 

@@ -38,6 +38,7 @@ export const discography: Track[] = [
     year: 2021,
     genre: 'Sinhala Soul',
     description: 'Debut solo single. A meditation on love beyond romance, universal, quiet, true.',
+    image: '/images/OBAMAI-01.png',
     links: {
       youtube: 'https://www.youtube.com/watch?v=NKO6ox4BbTY',
       appleMusic: 'https://music.apple.com/lk/song/obamai/1579630793',
@@ -51,6 +52,7 @@ export const discography: Track[] = [
     year: 2021,
     genre: 'Indie Pop',
     description: 'Written twelve years before it was released. About a crush, studied in England, and the vulnerability of being young.',
+    image: '/images/TOY-01.png',
     links: {
       appleMusic: 'https://music.apple.com/lk/artist/shaun-perera/795042956',
     },
